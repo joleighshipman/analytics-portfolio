@@ -46,3 +46,20 @@ The clustering results complement the SQL opportunity classifications, providing
 ## Repository Contents
 
 - `Project_3_Category_Lifecycle_Clustering.ipynb` — Reproducible Python analysis and K-Means clustering.
+- `data/` — Category opportunity scores and monthly sales datasets.
+- `outputs/` — Cluster assignments, cluster profiles, and supporting visualizations.
+- `README.md` — Project documentation.
+
+## Analytical Limitations
+
+The analysis describes historical performance in the available dataset. Growth consistency measures the frequency of revenue increases across eligible consecutive active-month comparisons; it does not predict future growth or demand.
+
+The opportunity classifications are based on defined historical performance thresholds. K-Means identifies patterns in the selected numerical features and does not establish causal relationships.
+
+## Portfolio Case Study
+
+[View the full Project 03 case study](https://drive.google.com/file/d/15poCeUTBt8bbGT_4WWR7oVV9EgGT8Xwb/view?usp=sharing)
+
+## Dataset
+
+Brazilian E-Commerce Public Dataset by Olist, available through Kaggle.
