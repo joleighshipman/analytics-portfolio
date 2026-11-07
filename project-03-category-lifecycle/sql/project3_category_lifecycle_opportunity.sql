@@ -82,7 +82,7 @@ category_metrics AS (
                 CASE
                     WHEN total_revenue > 0 THEN 1
                 END
-            ) * 100.0 / 25,
+            ) * 100.0 / (SELECT COUNT(*) FROM months),
             2
         ) AS activity_month_pct,
 
