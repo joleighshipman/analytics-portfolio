@@ -1,17 +1,4 @@
-WITH months AS (
-    SELECT DISTINCT
-        strftime('%Y-%m', order_purchase_timestamp) AS month
-    FROM orders
-),
-
-categories AS (
-    SELECT DISTINCT
-        product_category_name_english AS category
-    FROM product_category_name_translation
-    WHERE product_category_name_english IS NOT NULL
-),
-
-monthly_sales AS (
+WITH monthly_sales AS (
     SELECT
         strftime('%Y-%m', o.order_purchase_timestamp) AS month,
         t.product_category_name_english AS category,
@@ -25,7 +12,9 @@ monthly_sales AS (
         ON oi.product_id = p.product_id
     JOIN product_category_name_translation t
         ON p.product_category_name = t.product_category_name
-    GROUP BY month, category
+    GROUP BY
+        month,
+        category
 )
 
 SELECT
@@ -35,4 +24,6 @@ SELECT
     total_revenue,
     units_sold
 FROM monthly_sales
-ORDER BY category, month;
+ORDER BY
+    category,
+    month;
