@@ -49,6 +49,7 @@ The clustering results complement the SQL opportunity classifications, providing
 - `data/` — Category opportunity scores and monthly sales datasets.
 - `outputs/` — Cluster assignments, cluster profiles, and supporting visualizations.
 - `README.md` — Project documentation.
+- `sql/` — SQL scripts for monthly sales aggregation and category opportunity scoring.
 
 ## Analytical Limitations
 
