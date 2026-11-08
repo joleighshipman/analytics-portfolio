@@ -1,73 +1,91 @@
-# Project 02: E-Commerce Funnel & Customer Experience Optimization
+# Project 2: E-Commerce Funnel and Customer Experience Analysis
 
 ## Project Overview
 
-This project examines customer purchasing behavior and the e-commerce order journey using the Brazilian Olist dataset. Building on the revenue and customer insights identified in Project 1, this analysis focuses on funnel performance, payment completion, order fulfillment, delivery, and customer retention.
+This project examines the transactional customer journey of a Brazilian e-commerce marketplace using the Olist dataset. The analysis evaluates order status, payment records, delivery performance, repeat purchasing behavior, and customer satisfaction.
 
-The objective is to identify where value is lost throughout the purchasing journey and recommend improvements to customer experience and lifetime value.
+Because the dataset does not contain website sessions, traffic sources, or cart activity, this project uses a **transactional funnel** rather than a traditional website conversion funnel.
 
-## Business Objectives
+## Business Questions
 
-- Measure performance across the available transactional funnel.
-- Identify operational drop-off points between order creation, payment, and delivery.
-- Examine repeat purchasing behavior and customer retention.
-- Evaluate the time between customer purchases.
-- Identify opportunities to improve post-purchase engagement and lifetime value.
-
-## Tools & Methods
-
-- SQL
-- Power BI
-- DAX
-- Excel
-- Data Cleaning
-- Data Modeling
-- Funnel Analysis
-- Conversion Analysis
-- Customer Retention Analysis
-- Customer Behavior Analysis
-- KPI Development
-
-## Dataset
-
-- Brazilian E-Commerce Public Dataset by Olist
-- Approximately 99,000 orders
-- Customer, order, payment, and delivery data
+- How are orders distributed across fulfillment statuses?
+- How consistently are payment records associated with orders?
+- How effectively does the marketplace meet estimated delivery dates?
+- Do delivery outcomes vary by month and customer state?
+- How frequently do customers make repeat purchases?
+- How do payment methods and installment patterns vary?
+- How are delivery delays associated with customer review scores?
+- How quickly are customer reviews answered?
 
 ## Analytical Approach
 
-1. Prepared and joined transactional datasets using SQL.
-2. Developed an adapted funnel based on the available order data.
-3. Evaluated customer and order progression through the funnel.
-4. Analyzed payment completion and delivery outcomes.
-5. Examined repeat purchase behavior and time between purchases.
-6. Developed Power BI visualizations to communicate funnel performance and retention opportunities.
+SQL was used to investigate:
 
-## Adapted Funnel
+1. **Order and payment activity:** Order status distribution and payment record coverage.
+2. **Fulfillment performance:** Delivery timestamp quality, on-time delivery, monthly trends, and state-level comparisons.
+3. **Customer behavior:** Repeat customer rates and time between purchases.
+4. **Payment behavior:** Payment method distribution and credit card installment patterns.
+5. **Customer experience:** Review score distribution, delivery-delay relationships, payment-method reviews, and review response times.
 
-Because the dataset does not contain website sessions, add-to-cart events, or traffic-source information, the analysis uses the available transactional stages:
-
-**Customers → Orders Created → Payments Completed → Delivery**
+The 16 SQL scripts are available in the [`sql`](sql/) folder.
 
 ## Key Findings
 
-- Nearly all recorded orders successfully complete payment.
-- The primary operational drop-off occurs after payment, during fulfillment and delivery.
-- A portion of recorded orders is not delivered.
-- The majority of customers make only one purchase.
-- Repeat purchasing is limited, and the time between purchases varies considerably.
+### Order and Payment Activity
+- The dataset contains 99,441 orders.
+- 96,478 orders were recorded as delivered.
+- Payment records were associated with nearly all orders, including some canceled and unavailable orders.
 
-## Business Recommendations
+### Delivery Performance
+- Average delivery time was 12.56 days among delivered orders with valid delivery timestamps.
+- 91.89% of eligible delivered orders arrived on or before the estimated delivery date.
+- Delivery performance varied across months and states.
+- March 2018 recorded a notably lower on-time delivery rate of 78.64%.
 
-- Improve post-purchase communication and delivery visibility.
-- Strengthen fulfillment and delivery processes.
-- Introduce lifecycle marketing and customer re-engagement campaigns.
-- Offer personalized recommendations and second-purchase incentives.
-- Develop loyalty initiatives to encourage repeat purchasing.
-- Prioritize high-value customers who have not yet made a second purchase.
+### Customer Retention
+- 93,358 unique customers had delivered orders.
+- 2,801 customers, approximately 3.0%, placed more than one delivered order.
+- The average interval between repeat purchases was 79.15 days.
 
-## Business Takeaway
+### Payment Behavior
+- Credit cards represented the largest share of payment records.
+- Credit card installment activity varied substantially by installment count.
+- Orders could contain multiple payment methods, so payment-method shares are not mutually exclusive.
 
-The analysis reveals a distinction between successful payment completion and long-term customer retention. Although the transactional funnel performs well through payment, fulfillment challenges and limited repeat purchasing create opportunities to strengthen the customer experience.
+### Customer Satisfaction
+- 77.14% of recorded review scores were four or five stars.
+- Reviews associated with late deliveries averaged 2.57 stars, compared with 4.29 stars for on-time deliveries.
+- Negative review rates increased with longer delivery delays.
+- The average recorded review response time was 3.15 days.
 
-Improving post-purchase engagement, delivery performance, and retention strategies can help convert individual transactions into lasting customer relationships and increase customer lifetime value.
+## Business Implications
+
+The analysis identifies delivery reliability as an important area for customer experience monitoring. The relationship between longer delivery delays and lower review scores suggests that fulfillment performance deserves attention alongside payment and order operations.
+
+Repeat purchasing was relatively uncommon in the delivered-order population, highlighting an opportunity to investigate customer retention and post-purchase engagement further.
+
+Geographic and monthly delivery differences also suggest value in monitoring fulfillment performance across regions and time periods.
+
+## Methodology and Data Limitations
+
+- The analysis uses transactional records, not website traffic or cart-conversion data.
+- Payment records do not independently establish successful settlement.
+- Delivery metrics exclude orders without the required delivery and estimated-date timestamps.
+- Repeat purchasing is measured using the customer unique identifier and delivered orders.
+- Payment-method groups may overlap when an order uses multiple payment methods.
+- Relationships between delivery delays and review scores are observational and do not establish causation.
+- Review response timestamps measure recorded response timing, not response quality.
+- The dataset reflects a historical marketplace period and should not be interpreted as current operating performance.
+
+## Tools
+
+- SQL
+- SQLite
+- DB Browser for SQLite
+- GitHub
+
+## Project Files
+
+- [`SQL Analysis Scripts`](sql/)
+
+
